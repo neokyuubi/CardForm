@@ -46,4 +46,9 @@ export class CardFormComponent implements OnInit {
 
   }
 
+  onResetClick()
+  {
+    this.cardForm.reset();
+  }
+
 }
