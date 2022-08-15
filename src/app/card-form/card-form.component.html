@@ -1,5 +1,11 @@
-<form [formGroup]="cardForm">
-    <app-input [input]="getControl('name')"></app-input>
+<form [formGroup]="cardForm" (ngSubmit)="onSubmit()">
+    <app-input label="Name" [input]="getControl('name')"></app-input>
+    <app-input label="Card Number" [input]="getControl('cardNumber')"></app-input>
+    <app-input label="Expiration" [input]="getControl('expiration')"></app-input>
+    <app-input label="Security Code" [input]="getControl('securityCode')"></app-input>
+    <button class="button is-primary" [disabled]="cardForm.invalid" type="submit">
+        Submit
+    </button>
 </form>
 <hr>
 <div>Form value : {{ cardForm.value | json }}</div>

@@ -1,10 +1,23 @@
-<input [formControl]="input">
-<ng-container *ngIf="input.touched && input.dirty">
-    <div *ngIf="input.errors?.['required']">
-        Value is required !
+<div class="field">
+    <label class="label">{{ label }}</label>
+    <div class="control">
+        <input class="input" [ngClass]="{ 'is-danger': showErrors}" [formControl]="input">
+        
     </div>
-    <div *ngIf="input.errors?.['minlength']">
-        minlength of {{ input.errors?.['minlength']['requiredLength'] }} is required !
-        you entred {{ input.errors?.['minlength']['actualLength'] }}
-    </div>
-</ng-container>
+    <ng-container *ngIf="showErrors">
+        <div class="help is-danger" *ngIf="input.errors?.['required']">
+            Value is required !
+        </div>
+        <div class="help is-danger" *ngIf="input.errors?.['pattern']">
+            invalid date !
+        </div>
+        <div class="help is-danger" *ngIf="input.errors?.['minlength']">
+            minlength of {{ input.errors?.['minlength']['requiredLength'] }} is required !
+            you entred {{ input.errors?.['minlength']['actualLength'] }}
+        </div>
+        <div class="help is-danger" *ngIf="input.errors?.['maxlength']">
+            maxlength of {{ input.errors?.['maxlength']['requiredLength'] }} is required !
+            you entred {{ input.errors?.['maxlength']['actualLength'] }}
+        </div>
+    </ng-container>
+</div>
