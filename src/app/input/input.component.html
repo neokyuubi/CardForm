@@ -2,7 +2,6 @@
     <label class="label">{{ label }}</label>
     <div class="control">
         <input class="input" [ngClass]="{ 'is-danger': showErrors}" [formControl]="input">
-        
     </div>
     <ng-container *ngIf="showErrors">
         <div class="help is-danger" *ngIf="input.errors?.['required']">
