@@ -8,7 +8,8 @@ export class DateFormControl extends FormControl{
         console.log("this.value", this.value);
         if(value == null)
         {
-            value = '';
+            super.setValue('',  {...options, emitModelToViewChange:true });
+            return;
         }
         if(value.match(/[^0-9|\/]/gi))
         {
