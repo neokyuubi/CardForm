@@ -11,4 +11,10 @@ export class AppComponent {
   ngOnInit(): void {
     
   }
+
+  onSubmit()
+  {
+    console.log(this.email);
+    
+  }
 }

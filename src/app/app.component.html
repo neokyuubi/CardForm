@@ -2,7 +2,23 @@
     <app-card-form></app-card-form>
 </div> -->
 
-<form #emailForm>
-    <input name="email" [(ngModel)]="email" /> 
-    {{ emailForm }}
-</form>
+<div class="container">
+    <form autocomplete="off" #emailForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+            <label class="label">Enter Email</label>
+            <input [ngClass]="{'is-danger': emailControl.invalid && emailControl.touched}" class="input"  required type="email" pattern=".+@.+\..{3,4}" name="email" [(ngModel)]="email" #emailControl="ngModel" /> 
+            <ng-container *ngIf="emailControl.invalid && emailControl.touched">
+                <div class="help is-danger" *ngIf="emailControl.errors?.['required']">You must enter an email</div>
+                <div class="help is-danger" *ngIf="emailControl.errors?.['pattern']">Please enter a valid email</div>
+            </ng-container>
+        </div>
+        <button class="button is-primary" [disabled]="emailForm.invalid">
+            Submit
+        </button>
+    </form>
+    
+    <hr style="background-color: darkgray;height: 1px;">
+    <div>Is Form valid {{ emailForm.valid }}</div>
+    <div>Is emailForm.invalid {{ emailForm.invalid }}</div>
+    <div>Form values {{ emailForm.value | json }}</div>
+</div>
